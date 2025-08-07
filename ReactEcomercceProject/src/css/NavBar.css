@@ -20,3 +20,8 @@ img {
     height: 60px;
     border-radius: 50%;
 }
+
+.cart-icon {
+    width: 5px;
+    height: 5px;
+}

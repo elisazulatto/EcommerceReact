@@ -1,4 +1,5 @@
 import '../css/ItemList.css';
+import CartWidget from './CartWidget';
 
 const ItemListContainer = () => {
     return (
@@ -6,7 +7,7 @@ const ItemListContainer = () => {
             <h1>Nombre del libro</h1>
             <img src="/logo.jpg" alt="logo" />
             <p>$$</p>
-            <button>Agregar al carrito</button>
+            <CartWidget />
         </div>
     )
 }
