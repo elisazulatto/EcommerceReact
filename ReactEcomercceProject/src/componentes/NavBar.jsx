@@ -10,9 +10,9 @@ const NavBar = () => {
 
             <div className="nav-categories">
                 <a href="#" className="nav-link">Inicio</a>
-                <a href="#" className="nav-link">Preguntas frecuentes</a>
-                <a href="#" className="nav-link">Envios</a>
-                <a href="#" className="nav-link">Contacto</a>
+                <a href="#" className="nav-link">Libros usados</a>
+                <a href="#" className="nav-link">Libros nuevos</a>
+                <a href="#" className="nav-link">Novedades</a>
             </div>
 
             <div className="nav-cart">
