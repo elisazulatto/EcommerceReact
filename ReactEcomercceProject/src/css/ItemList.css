@@ -3,15 +3,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 60vh;
+    padding: 40px;
+    text-align: center;
+}
+
+.item-list-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.item-list-container p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    line-height: 1.6;
 }
 
 .catalogo {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 100vh;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 20px;
 }
 
 button {

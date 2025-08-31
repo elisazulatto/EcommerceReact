@@ -1,13 +1,10 @@
 import '../css/ItemList.css';
-import CartWidget from './CartWidget';
 
 const ItemListContainer = () => {
     return (
         <div className="item-list-container">
-            <h1>Nombre del libro</h1>
-            <img src="/logo.jpg" alt="logo" />
-            <p>$$</p>
-            <CartWidget />
+            <h1>Bienvenidos a nuestra tienda</h1>
+            <p>Aquí se mostrará el catálogo de productos</p>
         </div>
     )
 }

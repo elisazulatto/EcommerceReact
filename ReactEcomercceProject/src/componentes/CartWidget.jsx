@@ -1,21 +1,14 @@
-import { useState } from "react";
 import '../css/CartWidget.css';
 
 const CartWidget = () => {
-
-    const [cart, setCart] = useState(0);
-
-    const sumar = () => {
-        setCart(cart + 1);
-    }
-
-    const restar = () => {
-        setCart(cart - 1);
-    }
+    const cartItemsCount = 0;
 
     return (
-        <div className="botonesDeCompra">
-            <button onClick={sumar}>+</button><p> {cart} </p><button onClick={restar}>-</button>
+        <div className="cart-widget">
+            <span className="cart-icon">🛒</span>
+            {cartItemsCount > 0 && (
+                <span className="cart-count">{cartItemsCount}</span>
+            )}
         </div>
     )
 }
