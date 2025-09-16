@@ -1,25 +1,57 @@
 import '../css/ItemList.css';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../mock/AsyncMoc';
+import { useParams } from 'react-router-dom';
+import { getProducts, getProductsByCategory } from '../mock/AsyncMoc';
 import ItemList from './ItemList';
 
-
 const ItemListContainer = ({ greeting }) => {
-    //declaramos la respuessta como un estado
-    const [data, setData] = useState([])
+    const { category } = useParams();
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getProducts()
-            .then((res) => setData(res))  //aca se actualiza el estado
-            .catch((error) => console.error(error))
-    }, [])
+        setLoading(true);
+
+        const fetchProducts = category
+            ? getProductsByCategory(category)
+            : getProducts();
+
+        fetchProducts
+            .then((res) => {
+                setData(res);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setLoading(false);
+            });
+    }, [category]);
+
+    if (loading) {
+        return (
+            <div className="item-list-container">
+                <div className="container mt-4">
+                    <div className="text-center">
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Cargando...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="item-list-container">
-            <h1>{greeting}</h1>
-            <ItemList data={data} />
+            <div className="container mt-4">
+                <h1>{greeting}</h1>
+                {category && (
+                    <p className="text-muted">Mostrando productos de la categoría: {category}</p>
+                )}
+                <ItemList data={data} />
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default ItemListContainer;
