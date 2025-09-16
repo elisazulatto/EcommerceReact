@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../mock/AsyncMoc';
+import { useCart } from '../context/CartContext';
 import ItemCount from './ItemCount';
 
 const ItemDetail = () => {
     const { id } = useParams();
+    const { addToCart } = useCart();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [addedToCart, setAddedToCart] = useState(false);
 
     useEffect(() => {
         getProductById(id)
@@ -21,8 +24,8 @@ const ItemDetail = () => {
     }, [id]);
 
     const handleAddToCart = (quantity) => {
-        console.log(`Agregando ${quantity} unidades de ${product.name} al carrito`);
-        alert(`Se agregaron ${quantity} unidades de ${product.name} al carrito`);
+        addToCart(product, quantity);
+        setAddedToCart(true);
     };
 
     if (loading) {
@@ -66,10 +69,19 @@ const ItemDetail = () => {
                     <p><strong>Stock disponible:</strong> {product.stock} unidades</p>
 
                     <div className="mt-4">
-                        <ItemCount
-                            stock={product.stock}
-                            onAdd={handleAddToCart}
-                        />
+                        {!addedToCart ? (
+                            <ItemCount
+                                stock={product.stock}
+                                onAdd={handleAddToCart}
+                            />
+                        ) : (
+                            <div className="alert alert-success">
+                                <h5>¡Producto agregado al carrito!</h5>
+                                <a href="/cart" className="btn btn-primary">
+                                    Ver carrito
+                                </a>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

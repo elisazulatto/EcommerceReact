@@ -6,7 +6,7 @@ const productos = [
         categoria: 'Libro Usado',
         stock: 5,
         precio: 2500,
-        img: 'https://picsum.photos/200'
+        img: '/imagenes/principito.jpg'
     },
     {
         id: '02',
@@ -15,7 +15,7 @@ const productos = [
         categoria: 'Libro Nuevo',
         stock: 5,
         precio: 2500,
-        img: 'https://picsum.photos/200'
+        img: '/imagenes/lafelicidad.jpg'
     },
     {
         id: '03',
@@ -24,16 +24,16 @@ const productos = [
         categoria: 'Libro Nuevo',
         stock: 5,
         precio: 2500,
-        img: 'https://picsum.photos/200'
+        img: '/imagenes/ladob.png'
     },
     {
         id: '04',
-        name: 'El lado C del amor',
+        name: 'Tu persona vitamina',
         descripcion: 'Este libro es de autoayuda que profundiza en los aspectos más complejos del amor.',
         categoria: 'Novedades',
         stock: 5,
         precio: 2500,
-        img: 'https://picsum.photos/200'
+        img: '/imagenes/vitamina.jpg'
     }
 ]
 
