@@ -1,7 +1,6 @@
 import { collection, getDocs, query, where, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
-// Obtener todos los productos
 export const getProducts = async () => {
     try {
         const productsCollection = collection(db, 'products');
@@ -13,7 +12,6 @@ export const getProducts = async () => {
     }
 };
 
-// Obtener productos por categoría
 export const getProductsByCategory = async (category) => {
     try {
         const productsCollection = collection(db, 'products');
@@ -26,7 +24,6 @@ export const getProductsByCategory = async (category) => {
     }
 };
 
-// Obtener producto por ID
 export const getProductById = async (id) => {
     try {
         const productDoc = doc(db, 'products', id);
@@ -42,7 +39,6 @@ export const getProductById = async (id) => {
     }
 };
 
-// Crear orden
 export const createOrder = async (orderData) => {
     try {
         const ordersCollection = collection(db, 'orders');

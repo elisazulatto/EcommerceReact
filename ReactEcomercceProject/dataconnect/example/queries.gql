@@ -1,0 +1,37 @@
+mutation CreateUser @auth(level: USER) {
+  user_insert(data: {
+    username: "new_user",
+    email: "new_user@example.com",
+    displayName: "New User",
+    createdAt_expr: "request.time"
+  })
+}
+
+query ListBooks @auth(level: PUBLIC) {
+  books {
+    id
+    title
+    author
+  }
+}
+
+mutation UpdateListingStatus($id: UUID!, $status: String!) @auth(level: USER) {
+  listing_update(
+    id: $id,
+    data: {
+      status: $status
+    }
+  )
+}
+
+query GetUserListings($sellerId: UUID!) @auth(level: USER) {
+  listings(where: { sellerId: { eq: $sellerId } }) {
+    id
+    book {
+      title
+      author
+    }
+    price
+    status
+  }
+}

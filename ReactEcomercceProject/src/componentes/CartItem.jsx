@@ -4,7 +4,9 @@ const CartItem = ({ item }) => {
     const { updateQuantity, removeFromCart } = useCart();
 
     const handleQuantityChange = (newQuantity) => {
-        updateQuantity(item.id, newQuantity);
+        if (newQuantity <= item.stock) {
+            updateQuantity(item.id, newQuantity);
+        }
     };
 
     return (
@@ -26,6 +28,7 @@ const CartItem = ({ item }) => {
                             <button
                                 className="btn btn-outline-secondary btn-sm"
                                 onClick={() => handleQuantityChange(item.quantity - 1)}
+                                disabled={item.quantity <= 1}
                             >
                                 -
                             </button>
@@ -33,10 +36,12 @@ const CartItem = ({ item }) => {
                             <button
                                 className="btn btn-outline-secondary btn-sm"
                                 onClick={() => handleQuantityChange(item.quantity + 1)}
+                                disabled={item.quantity >= item.stock}
                             >
                                 +
                             </button>
                         </div>
+                        <small className="text-muted">Stock disponible: {item.stock}</small>
                     </div>
                 </div>
                 <div className="col-md-2">

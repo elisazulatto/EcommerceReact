@@ -1,27 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProductById } from '../mock/AsyncMoc';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import ItemCount from './ItemCount';
 
-const ItemDetail = () => {
-    const { id } = useParams();
+const ItemDetail = ({ product, loading, error }) => {
     const { addToCart } = useCart();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [addedToCart, setAddedToCart] = useState(false);
-
-    useEffect(() => {
-        getProductById(id)
-            .then((res) => {
-                setProduct(res);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setLoading(false);
-            });
-    }, [id]);
 
     const handleAddToCart = (quantity) => {
         addToCart(product, quantity);
@@ -40,11 +24,29 @@ const ItemDetail = () => {
         );
     }
 
-    if (!product) {
+    if (error) {
         return (
             <div className="container mt-4">
                 <div className="alert alert-danger" role="alert">
-                    Producto no encontrado
+                    <h4>Error</h4>
+                    <p>{error}</p>
+                    <Link to="/" className="btn btn-primary">
+                        Volver al catálogo
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    if (!product) {
+        return (
+            <div className="container mt-4">
+                <div className="alert alert-warning" role="alert">
+                    <h4>Producto no encontrado</h4>
+                    <p>El producto que buscas no existe o ha sido eliminado.</p>
+                    <Link to="/" className="btn btn-primary">
+                        Volver al catálogo
+                    </Link>
                 </div>
             </div>
         );
@@ -77,9 +79,9 @@ const ItemDetail = () => {
                         ) : (
                             <div className="alert alert-success">
                                 <h5>¡Producto agregado al carrito!</h5>
-                                <a href="/cart" className="btn btn-primary">
+                                <Link to="/cart" className="btn btn-primary">
                                     Ver carrito
-                                </a>
+                                </Link>
                             </div>
                         )}
                     </div>

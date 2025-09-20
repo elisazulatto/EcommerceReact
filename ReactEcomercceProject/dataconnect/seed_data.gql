@@ -1,0 +1,82 @@
+mutation PopulateDatabaseWithSeedData @auth(level: USER) {
+  book_insertMany(data: [
+    {
+      author: "Jane Austen",
+      coverImageUrl: "https://example.com/prideandprejudice.jpg",
+      description: "A classic novel about love and society.",
+      genre: "Romance",
+      isbn: "978-0141439518",
+      publishedYear: 1813,
+      title: "Pride and Prejudice"
+    },
+    {
+      author: "George Orwell",
+      coverImageUrl: "https://example.com/1984.jpg",
+      description: "A dystopian novel about totalitarianism.",
+      genre: "Science Fiction",
+      isbn: "978-0451524935",
+      publishedYear: 1949,
+      title: "1984"
+    }
+  ])
+  user_insertMany(data: [
+    {
+      bio: "Avid reader and book collector.",
+      createdAt: "2024-01-01T00:00:00Z",
+      displayName: "Alice Smith",
+      email: "alice.smith@example.com",
+      username: "asmith"
+    },
+    {
+      bio: "Enjoys reviewing and listing books.",
+      createdAt: "2024-02-15T00:00:00Z",
+      displayName: "Bob Johnson",
+      email: "bob.johnson@example.com",
+      username: "bjohnson"
+    }
+  ])
+  listing_insertMany(data: [
+    {
+      bookId: "550e8400-e29b-41d4-a716-446655440000", # Replace with a valid Book ID
+      sellerId: "650e8400-e29b-41d4-a716-446655440001", # Replace with a valid User ID
+      condition: "New",
+      createdAt: "2024-03-01T12:00:00Z",
+      imageUrls: ["https://example.com/listing1_image1.jpg"],
+      notesOnCondition: "Unread copy.",
+      price: 9.99,
+      status: "Available"
+    },
+    {
+      bookId: "550e8400-e29b-41d4-a716-446655440001", # Replace with a valid Book ID
+      sellerId: "650e8400-e29b-41d4-a716-446655440002", # Replace with a valid User ID
+      condition: "Used - Good",
+      createdAt: "2024-03-10T15:00:00Z",
+      imageUrls: ["https://example.com/listing2_image1.jpg"],
+      notesOnCondition: "Slight wear on the cover.",
+      price: 5.99,
+      status: "Available"
+    }
+  ])
+ transaction_insertMany(data: [
+   {
+     buyerId: "650e8400-e29b-41d4-a716-446655440003",
+     listingId: "750e8400-e29b-41d4-a716-446655440004",
+     sellerId: "850e8400-e29b-41d4-a716-446655440005",
+     shippingMethod: "USPS",
+     status: "Shipped",
+     totalPrice: 15.00,
+     trackingNumber: "9205590200187163475298",
+     transactionDate: "2024-03-15T00:00:00Z"
+   }
+ ])
+ review_insertMany(data: [
+   {
+     reviewedUserId: "950e8400-e29b-41d4-a716-446655440006",
+     reviewerId: "a50e8400-e29b-41d4-a716-446655440007",
+     transactionId: "b50e8400-e29b-41d4-a716-446655440008",
+     comment: "Great transaction!",
+     createdAt: "2024-03-20T00:00:00Z",
+     rating: 5
+   }
+ ])
+}

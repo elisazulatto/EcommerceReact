@@ -37,7 +37,6 @@ const productos = [
     }
 ]
 
-//promesa 1 que devuelve todos los productos
 export const getProducts = () => {
     let error = false
     return new Promise((resolve, reject) => {
@@ -51,7 +50,6 @@ export const getProducts = () => {
     })
 }
 
-//promesa 2 que devuelve productos filtrados por categoría
 export const getProductsByCategory = (category) => {
     let error = false
     return new Promise((resolve, reject) => {
@@ -66,7 +64,6 @@ export const getProductsByCategory = (category) => {
     })
 }
 
-//promesa 3 que devuelve un producto por ID
 export const getProductById = (id) => {
     let error = false
     return new Promise((resolve, reject) => {

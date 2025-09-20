@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { createOrder } from '../services/firebaseService';
 
@@ -64,7 +65,7 @@ const CheckoutForm = () => {
             <div className="container mt-4">
                 <div className="text-center">
                     <h2>No hay productos en el carrito</h2>
-                    <a href="/" className="btn btn-primary">Volver al inicio</a>
+                    <Link to="/" className="btn btn-primary">Volver al inicio</Link>
                 </div>
             </div>
         );
@@ -109,6 +110,8 @@ const CheckoutForm = () => {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleInputChange}
+                                pattern="[0-9+\-\s\(\)]+"
+                                title="Solo se permiten números, +, -, espacios y paréntesis"
                                 required
                             />
                         </div>

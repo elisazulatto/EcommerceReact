@@ -1,6 +1,6 @@
 # E-Commerce React App
 
-Una aplicación de e-commerce desarrollada con React que permite navegar por un catálogo de productos, agregar items al carrito y realizar compras.
+Una aplicación de e-commerce desarrollada con React que permite navegar por un catálogo de libros nuevos y usados, agregar items al carrito y realizar compras.
 
 ## Características
 
@@ -31,6 +31,7 @@ src/
 │   ├── Item.jsx
 │   ├── ItemCount.jsx
 │   ├── ItemDetail.jsx
+│   ├── ItemDetailContainer.jsx
 │   ├── ItemList.jsx
 │   ├── ItemListContainer.jsx
 │   └── NavBar.jsx
@@ -48,74 +49,43 @@ src/
 
 ## Instalación
 
-1. Clona el repositorio
-2. Instala las dependencias:
+1. **Clona el repositorio**
+   ```bash
+   git clone "https://github.com/elisazulatto/EcommerceReact.git"
+   cd ReactEcomercceProject
+   ```
+
+2. **Instala las dependencias** (IMPORTANTE: Ejecutar desde la carpeta del proyecto)
    ```bash
    npm install
    ```
-3. Configura Firebase:
-   - Crea un proyecto en Firebase
-   - Obtén las credenciales de configuración
-   - Actualiza el archivo `src/firebase/config.js`
-4. Ejecuta el proyecto:
-   ```bash
-   npm run dev
-   ```
+   Esto instalará todas las dependencias necesarias:
+   - React 19.1.0
+   - React Router DOM
+   - Firebase SDK
+   - Bootstrap CSS
 
-## Funcionalidades implementadas
+3. **Configura Firebase:**
+   - Crea un archivo `.env` en la raíz del proyecto con las siguientes credenciales:
+     ```bash
+     # Firebase Configuration - Credenciales del proyecto
+     VITE_FIREBASE_API_KEY=AIzaSyBR2UPR2JwtuaA8kWmH7yMhHph31VxdXRQ
+     VITE_FIREBASE_AUTH_DOMAIN=reread-c9c7d.firebaseapp.com
+     VITE_FIREBASE_PROJECT_ID=reread-c9c7d
+     VITE_FIREBASE_STORAGE_BUCKET=reread-c9c7d.firebasestorage.app
+     VITE_FIREBASE_MESSAGING_SENDER_ID=702275631174
+     VITE_FIREBASE_APP_ID=1:702275631174:web:a1d2dbc477b57bba857247
+     VITE_FIREBASE_MEASUREMENT_ID=G-QC4P7V1L0Q
+     ```
 
-### Navegación
-- Rutas para catálogo principal, categorías, detalle de producto, carrito y checkout
-- Navegación sin recarga de página (SPA)
-- Página 404 para rutas no encontradas
-
-### Carrito de compras
-- Context API para manejo global del estado del carrito
-- Agregar/eliminar productos
-- Modificar cantidades
-- Cálculo automático de totales
-- Persistencia durante la navegación
-
-### Base de datos
-- Colección de productos en Firestore
-- Registro de órdenes de compra
-- Consultas asíncronas con manejo de errores
-
-### Experiencia de usuario
-- Estados de carga con spinners
-- Mensajes condicionales (carrito vacío, sin stock, etc.)
-- Validaciones en formularios
-- Confirmación de órdenes con ID único
-
-## Variables de entorno
-
-Para ocultar las credenciales de Firebase, crea un archivo `.env` en la raíz del proyecto:
+La aplicación estará disponible en: `https://reread-c9c7d.web.app`
 
 ```
-VITE_FIREBASE_API_KEY=tu-api-key
-VITE_FIREBASE_AUTH_DOMAIN=tu-proyecto.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=tu-proyecto-id
-VITE_FIREBASE_STORAGE_BUCKET=tu-proyecto.appspot.com
-VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
-VITE_FIREBASE_APP_ID=tu-app-id
+VITE_FIREBASE_API_KEY=AIzaSyBR2UPR2JwtuaA8kWmH7yMhHph31VxdXRQ
+VITE_FIREBASE_AUTH_DOMAIN=reread-c9c7d.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=reread-c9c7d
+VITE_FIREBASE_STORAGE_BUCKET=reread-c9c7d.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=702275631174
+VITE_FIREBASE_APP_ID=1:702275631174:web:a1d2dbc477b57bba857247
+VITE_FIREBASE_MEASUREMENT_ID=G-QC4P7V1L0Q
 ```
-
-Luego actualiza `src/firebase/config.js` para usar estas variables.
-
-## Resumen de lo implementado:
-
-✅ **Listado y Detalle de productos** - Completado
-✅ **Separación contenedores/presentación** - Completado  
-✅ **ItemCount con validaciones** - Completado
-✅ **Ocultar ItemCount después de agregar** - Completado
-✅ **Navegación con React Router** - Completado
-✅ **SPA sin recargas** - Completado
-✅ **Context para carrito** - Completado
-✅ **Componente Cart** - Completado
-✅ **CartWidget con contador** - Completado
-✅ **Firebase Firestore** - Completado
-✅ **Renderizado condicional** - Completado
-✅ **Confirmación de órdenes** - Completado
-✅ **README.md** - Completado
-
-**¡Tu aplicación está completa y lista para la entrega final!** Solo necesitas configurar Firebase con tus credenciales y estará funcionando al 100%.
