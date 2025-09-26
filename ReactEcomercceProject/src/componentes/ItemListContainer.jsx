@@ -1,7 +1,8 @@
 import '../css/ItemList.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProducts, getProductsByCategory } from '../services/firebaseService';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../firebase/config';
 import ItemList from './ItemList';
 
 const ItemListContainer = ({ greeting }) => {
@@ -11,27 +12,26 @@ const ItemListContainer = ({ greeting }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                setLoading(true);
-                setError(null);
+        setLoading(true);
+        const productosCollection = collection(db, 'productos');
+        const ref = category
+            ? query(productosCollection, where('categoria', '==', category))
+            : productosCollection;
 
-                const products = category
-                    ? await getProductsByCategory(category)
-                    : await getProducts();
-
-                setData(products);
-            } catch (error) {
-                console.error('Error fetching products:', error);
+        getDocs(ref)
+            .then((snapshot) => {
+                const productos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+                setData(productos);
+            })
+            .catch((err) => {
+                console.error('Error fetching products:', err);
                 setError('Error al cargar los productos');
-                setData([]);
-            } finally {
+            })
+            .finally(() => {
                 setLoading(false);
-            }
-        };
-
-        fetchProducts();
+            });
     }, [category]);
+
 
     if (loading) {
         return (
